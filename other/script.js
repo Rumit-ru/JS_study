@@ -1,35 +1,29 @@
-"use strict";
+let btn = document.querySelector('.btn'),
+	elem = document.querySelector('.box');
 
-let btn = document.querySelectorAll('button'),
-	wrap = document.querySelector('.wrapper'),
-	link = document.querySelector('a');
+function myAnimation () {
+	let pos = 0;
 
-// btn[0].onclick = function() {
-//     alert('You are push on the first button!');
-// };
+	let id = setInterval(frame, 10);
 
-// btn[0].addEventListener('click', function(event) {
-//     // let target = event.target;
-//     // target.style.display = 'none';  
-//     console.log('Произошло событие: ' + event.type + 'на элементе ' + event.target); 
-// });
+	function frame () {
+		if (pos==300) {
+			clearInterval(id);
+		} else {
+			pos++;
+			elem.style.top = pos + 'px';
+			elem.style.left = pos + 'px';
+		}
+	}
+}
 
-// wrap.addEventListener('click', function() {
-//     console.log('Произошло событие: ' + event.type + 'на элементе ' + event.target); 
-// });
+btn.addEventListener('click', myAnimation);
 
+let btnBlock = document.querySelector('.btn-block'),
+	btns = document.getElementsByTagName('button');
 
-link.addEventListener('click', function(event) {
-	event.preventDefault();
-    console.log('Произошло событие: ' + event.type + 'на элементе ' + event.target);
+btnBlock.addEventListener('click', function(event) {
+	if (event.target && event.target.classList.contains('first')) {
+		console.log('Hello!');
+	}
 });
-
-btn.forEach(function(item) {
-	item.addEventListener('mouseleave', function() {
-		console.log('Mouse leave nearest of btn!');
-	});
-});
-
-// btn[0].addEventListener('mouseenter', function() {
-//     alert('You pointed to the first button!');
-// });
